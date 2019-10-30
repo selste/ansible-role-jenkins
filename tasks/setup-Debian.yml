@@ -5,6 +5,11 @@
       - curl
       - apt-transport-https
       - gnupg
+    state: present
+
+- name: Ensure a suitable JDK is installed.
+  apt:
+    name:
       - openjdk-11-jdk-headless
     state: present
 

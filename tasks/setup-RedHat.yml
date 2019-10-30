@@ -5,6 +5,11 @@
       - curl
       - libselinux-python
       - initscripts
+    state: present
+
+- name: Ensure a suitable JDK is installed.
+  package:
+    name:
       - java-11-openjdk-headless
     state: present
 
