@@ -5,6 +5,7 @@
       - curl
       - libselinux-python
       - initscripts
+      - java-11-openjdk-headless
     state: present
 
 - name: Ensure Jenkins repo is installed.
