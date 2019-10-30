@@ -117,10 +117,6 @@ Changes made to the Jenkins init script; the default set of changes set the conf
 
 If you are running Jenkins behind a proxy server, configure these options appropriately. Otherwise Jenkins will be configured with a direct Internet connection.
 
-## Dependencies
-
-  - geerlingguy.java
-
 ## Example Playbook
 
 ```yaml
