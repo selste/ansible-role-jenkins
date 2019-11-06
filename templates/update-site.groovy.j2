@@ -1,0 +1,21 @@
+#!groovy
+import hudson.model.*
+import jenkins.model.*
+
+def instance = Jenkins.get()
+
+def updateCenter = instance.getUpdateCenter()
+def sites = updateCenter.getSites()
+
+if (sites.isEmpty()) {
+    // do nothing here
+} else {
+    // Clear all sites first
+    sites.removeAll(UpdateSite.class)
+    updateCenter.save()
+}
+
+// Create a custom site as default
+def site = new UpdateSite("default", "{{ jenkins_updates_url }}/update-center.json")
+sites.add(site)
+updateCenter.save()
