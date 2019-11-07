@@ -64,9 +64,7 @@
   file:
     path: "{{ jenkins_home }}/init.groovy.d/{{ item}}"
     state: absent
-  loop:
-    - basic-security.groovy
-    - update-site.groovy
+  loop: "{{ jenkins_init_scripts }}"
 
 # Update Jenkins and install configured plugins.
 - include_tasks: plugins.yml

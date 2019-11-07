@@ -2,20 +2,12 @@
 - name: restart jenkins
   service: name=jenkins state=restarted
 
-- name: configure default users
+- name: process jenkins init scripts
   template:
-    src: basic-security.groovy.j2
-    dest: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
+    src: "{{ item }}.j2"
+    dest: "{{ jenkins_home }}/init.groovy.d/{{ item }}"
     owner: "{{ jenkins_process_user }}"
     group: "{{ jenkins_process_group }}"
     mode: 0775
-  register: jenkins_users_config
-
-- name: configure update site
-  template:
-    src: update-site.groovy.j2
-    dest: "{{ jenkins_home }}/init.groovy.d/update-site.groovy"
-    owner: "{{ jenkins_process_user }}"
-    group: "{{ jenkins_process_group }}"
-    mode: 0775
-  register: jenkins_update_site_config
+  loop: "{{ jenkins_init_scripts }}"
+  register: jenkins_init_scripts_processed
